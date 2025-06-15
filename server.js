@@ -5,7 +5,17 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
 
-connectDB();
+const initializeServer = async () => {
+    try {
+        await connectDB();
+        console.log('✅ Database connection initialized');
+    } catch (error) {
+        console.error('❌ Failed to initialize database:', error);
+    }
+};
+
+// Initialize database connection
+initializeServer();
 
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
