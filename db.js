@@ -15,12 +15,11 @@ const connectDB = async () => {
         }
 
         const options = {
-            bufferCommands: false, // Disable mongoose buffering
-            serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
-            socketTimeoutMS: 450000, // Close sockets after 450 seconds of inactivity
-            maxPoolSize: 10, // Maintain up to 10 socket connections
-            minPoolSize: 1,  // Maintain at least 1 socket connection
-            maxIdleTimeMS: 30000, // Close connections after 30 seconds of inactivity
+            serverSelectionTimeoutMS: 15000, // Tăng lên 15 giây
+            socketTimeoutMS: 60000, // Tăng lên 60 giây
+            maxPoolSize: 5, // Giảm số kết nối tối đa để tiết kiệm tài nguyên
+            minPoolSize: 1,
+            maxIdleTimeMS: 30000,
         };
 
         await mongoose.connect(process.env.MONGO_URI, options);
