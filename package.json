@@ -4,6 +4,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "node server.js",
+    "vercel-build": "echo 'Building for Vercel'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
