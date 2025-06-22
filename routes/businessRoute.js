@@ -152,18 +152,12 @@ router.get('/most-viewed', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const businessData = req.body;
-        const address = businessData.address.trim();
-        const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${address}&limit=1&addressdetails=1`)
-        const locationData = response.data[0];
-        businessData.location = {
-            "latitude": parseFloat(locationData.lat),
-            "longitude": parseFloat(locationData.lon),
-        };
         const business = new Business({
             ...businessData,
             createdAt: new Date(),
             updatedAt: new Date()
         });
+
 
         const savedBusiness = await business.save();
         res.status(201).json(savedBusiness);
